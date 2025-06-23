@@ -1,4 +1,3 @@
-# appspec.yml
 version: 0.0
 os: linux
 files:
@@ -6,6 +5,10 @@ files:
     destination: /var/www/html
 hooks:
   AfterInstall:
-    - location: scripts/deploy.sh
+    - location: scripts/install_dependencies.sh
+      timeout: 300
+      runas: root
+  ApplicationStart:
+    - location: scripts/start_server.sh
       timeout: 300
       runas: root
